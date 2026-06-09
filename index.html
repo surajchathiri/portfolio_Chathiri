@@ -1,403 +1,978 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Suraj Sagar Chathiri Portfolio</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Suraj Sagar Chathiri — Data Analyst & AI/ML Professional</title>
+<meta name="description" content="Data Analyst & AI/ML Professional. 3+ years delivering scalable analytics, LLM-powered automation, and predictive intelligence across $3.6B+ financial portfolios."/>
+<meta property="og:title" content="Suraj Sagar Chathiri — Data Analyst & AI/ML"/>
+<meta property="og:description" content="Turning enterprise data into decisions — from $2.8B portfolios to GenAI pipelines."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"/>
+<style>
+:root {
+  --bg:       #060810;
+  --bg2:      #0d1121;
+  --bg3:      #131829;
+  --border:   rgba(100,149,255,0.12);
+  --blue:     #5b8fff;
+  --purple:   #9d7fea;
+  --green:    #2dd4a0;
+  --amber:    #f5a623;
+  --text:     #dde3ff;
+  --muted:    rgba(221,227,255,0.45);
+  --faint:    rgba(221,227,255,0.18);
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
 
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Font Awesome for Icons -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-  />
+html { scroll-behavior: smooth; }
 
-  <!-- AOS Animation Library CSS -->
-  <link
-    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
-    rel="stylesheet"
-  />
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  width: 10px; height: 10px;
+  background: var(--blue);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: screen;
+}
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(91,143,255,0.4);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.12s ease, width 0.2s, height 0.2s;
+}
+body:hover #cursor { opacity: 1; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(91,143,255,0.3); border-radius: 2px; }
+
+/* ── PARTICLE CANVAS ── */
+#particles {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(6,8,16,0.75);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -0.5px;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 1.5px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 8px 20px;
+  border: 1px solid rgba(91,143,255,0.35);
+  border-radius: 6px;
+  color: var(--blue);
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+}
+.nav-cta:hover { background: rgba(91,143,255,0.12); }
+
+/* ── HERO ── */
+#hero {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 48px 80px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 3px;
+  color: var(--blue);
+  border: 1px solid rgba(91,143,255,0.25);
+  padding: 6px 18px; border-radius: 20px;
+  margin-bottom: 28px;
+  display: inline-block;
+  background: rgba(91,143,255,0.06);
+  animation: riseIn 0.9s cubic-bezier(.16,1,.3,1) both;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 7vw, 80px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+  animation: riseIn 0.9s cubic-bezier(.16,1,.3,1) 0.1s both;
+}
+.hero-name span {
+  background: linear-gradient(120deg, #ffffff 0%, var(--blue) 45%, var(--purple) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-typewriter {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--blue);
+  min-height: 24px;
+  margin-bottom: 24px;
+  animation: riseIn 0.9s cubic-bezier(.16,1,.3,1) 0.2s both;
+}
+.hero-typewriter::after {
+  content: '|';
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-sub {
+  font-size: 17px; color: var(--muted);
+  max-width: 560px; line-height: 1.7;
+  margin: 0 auto 40px;
+  animation: riseIn 0.9s cubic-bezier(.16,1,.3,1) 0.3s both;
+}
+
+.hero-kpis {
+  display: flex; gap: 48px; justify-content: center;
+  margin-bottom: 44px;
+  animation: riseIn 0.9s cubic-bezier(.16,1,.3,1) 0.4s both;
+}
+.kpi { text-align: center; }
+.kpi-num {
+  font-family: var(--font-display);
+  font-size: 38px; font-weight: 800;
+  color: var(--blue);
+  line-height: 1;
+}
+.kpi-unit { font-size: 20px; }
+.kpi-label {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 1.5px;
+  color: var(--faint); margin-top: 4px;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  animation: riseIn 0.9s cubic-bezier(.16,1,.3,1) 0.5s both;
+}
+.btn-primary {
+  padding: 12px 28px;
+  background: var(--blue);
+  color: var(--bg); font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500; letter-spacing: 1px;
+  border-radius: 8px; text-decoration: none;
+  transition: all 0.2s; border: none; cursor: none;
+}
+.btn-primary:hover { background: #7aaeff; transform: translateY(-2px); }
+.btn-ghost {
+  padding: 12px 28px;
+  border: 1px solid var(--border);
+  color: var(--muted); font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 1px;
+  border-radius: 8px; text-decoration: none;
+  transition: all 0.2s; cursor: none;
+}
+.btn-ghost:hover { border-color: rgba(91,143,255,0.4); color: var(--text); }
+
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px;
+  color: var(--faint); display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: riseIn 1s ease 1.2s both;
+}
+.scroll-bar {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--blue), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.3)} }
+
+/* ── SECTIONS ── */
+section {
+  position: relative; z-index: 2;
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+section.full { max-width: none; padding: 100px 0; border-top: 1px solid var(--border); }
+section.full .inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+.ch-label {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 3px;
+  color: var(--blue); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ch-title {
+  font-family: var(--font-display);
+  font-size: 38px; font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 48px;
+  color: #fff;
+}
+
+/* scroll reveal */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-l { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-l.in { opacity: 1; transform: translateX(0); }
+.reveal-r { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-r.in { opacity: 1; transform: translateX(0); }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 40px; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(to bottom, var(--blue), var(--purple), rgba(91,143,255,0.05));
+}
+
+.tl-item {
+  position: relative; margin-bottom: 60px;
+  opacity: 0; transform: translateX(-24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.tl-item.in { opacity: 1; transform: translateX(0); }
+
+.tl-dot {
+  position: absolute; left: -36px; top: 8px;
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid var(--blue);
+  background: var(--bg);
+}
+.tl-dot.live {
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(91,143,255,0.15), 0 0 16px rgba(91,143,255,0.5);
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%,100%{box-shadow:0 0 0 4px rgba(91,143,255,0.15),0 0 16px rgba(91,143,255,0.4)}
+  50%{box-shadow:0 0 0 8px rgba(91,143,255,0.08),0 0 28px rgba(91,143,255,0.7)}
+}
+
+.tl-head { margin-bottom: 4px; }
+.tl-period {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
+  color: var(--blue); margin-bottom: 6px;
+}
+.tl-company {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 800; color: #fff;
+  letter-spacing: -0.5px; margin-bottom: 4px;
+}
+.tl-role { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+.tl-badge {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--blue); letter-spacing: 0.5px;
+  background: rgba(91,143,255,0.08);
+  border: 1px solid rgba(91,143,255,0.2);
+  padding: 4px 14px; border-radius: 4px; margin-bottom: 20px;
+}
+
+.tl-points { list-style: none; }
+.tl-points li {
+  padding: 8px 0 8px 22px; position: relative;
+  font-size: 14px; color: rgba(221,227,255,0.7);
+  border-bottom: 1px solid rgba(91,143,255,0.05); line-height: 1.55;
+}
+.tl-points li::before {
+  content: '▸'; position: absolute; left: 0; top: 9px;
+  color: var(--blue); font-size: 11px;
+}
+.tl-points li strong { color: #fff; font-weight: 500; }
+
+.tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.tl-tag {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px;
+  padding: 3px 10px; border-radius: 4px;
+  background: rgba(157,127,234,0.08);
+  border: 1px solid rgba(157,127,234,0.2); color: var(--purple);
+}
+
+/* ── IMPACT CARDS ── */
+.impact-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+}
+.impact-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px 20px;
+  text-align: center; position: relative; overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.impact-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  opacity: 0.6;
+}
+.impact-card:hover { transform: translateY(-4px); border-color: rgba(91,143,255,0.3); }
+.impact-num {
+  font-family: var(--font-display);
+  font-size: 42px; font-weight: 800;
+  color: var(--blue); display: block; margin-bottom: 8px; line-height: 1;
+}
+.impact-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ── AI PROJECT CARDS ── */
+.ai-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+.ai-card {
+  background: var(--bg2);
+  border: 1px solid rgba(157,127,234,0.15);
+  border-radius: 14px; padding: 28px;
+  position: relative; overflow: hidden;
+  transition: all 0.3s;
+}
+.ai-card:hover {
+  border-color: rgba(157,127,234,0.4);
+  background: rgba(13,17,33,0.9);
+  transform: translateY(-3px);
+}
+.ai-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 20px; right: 20px; height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(157,127,234,0.4),transparent);
+}
+.ai-glyph { font-size: 30px; margin-bottom: 14px; display: block; }
+.ai-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.ai-stack {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px;
+  color: var(--purple); margin-bottom: 12px;
+}
+.ai-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── TECH CANVAS ── */
+#tech-section { background: var(--bg); }
+#techCanvas { width: 100%; height: 380px; display: block; }
+
+/* ── PROJECT CARDS ── */
+.proj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.proj-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 22px;
+  text-decoration: none; display: block;
+  transition: all 0.25s;
+}
+.proj-card:hover {
+  border-color: rgba(91,143,255,0.3);
+  background: rgba(91,143,255,0.04);
+  transform: translateY(-3px);
+}
+.proj-glyph { font-size: 26px; margin-bottom: 10px; }
+.proj-name { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.proj-tools {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--faint); margin-bottom: 14px; letter-spacing: 0.3px;
+}
+.proj-links { display: flex; gap: 8px; }
+.proj-link {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px;
+  padding: 4px 12px; border: 1px solid rgba(91,143,255,0.2);
+  border-radius: 4px; color: var(--blue); text-decoration: none;
+  transition: all 0.2s;
+}
+.proj-link:hover { background: rgba(91,143,255,0.12); }
+
+/* ── EDU / CERTS ── */
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.edu-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px;
+}
+.edu-icon { font-size: 28px; margin-bottom: 12px; }
+.edu-deg { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.edu-school { font-size: 12px; color: var(--muted); }
+
+.cert-list { display: flex; flex-direction: column; gap: 10px; }
+.cert-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+.cert-item:hover { border-color: rgba(91,143,255,0.3); }
+.cert-dot {
+  width: 8px; height: 8px; flex-shrink: 0;
+  border-radius: 50%; background: var(--blue);
+  box-shadow: 0 0 8px rgba(91,143,255,0.6);
+}
+.cert-name { font-size: 14px; color: var(--text); flex: 1; }
+.cert-by { font-family: var(--font-mono); font-size: 10px; color: var(--faint); letter-spacing: 0.5px; }
+
+/* ── CONNECT ── */
+#connect { text-align: center; }
+.connect-grid {
+  display: flex; flex-wrap: wrap;
+  gap: 12px; justify-content: center; margin-bottom: 48px;
+}
+.c-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none; color: var(--muted);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.5px;
+  background: var(--bg2);
+  transition: all 0.25s;
+}
+.c-link:hover { border-color: rgba(91,143,255,0.4); color: #fff; background: rgba(91,143,255,0.07); }
+.c-link i { font-size: 16px; color: var(--blue); }
+
+.footer-quote {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 600;
+  color: rgba(221,227,255,0.5);
+  max-width: 480px; margin: 0 auto 20px; line-height: 1.4;
+  font-style: italic;
+}
+.footer-meta {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--faint); letter-spacing: 1px;
+}
+.footer-meta strong { color: var(--blue); }
+
+/* ── ANIMATIONS ── */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 24px 60px; }
+  .hero-kpis { gap: 24px; flex-wrap: wrap; }
+  .kpi-num { font-size: 28px; }
+  section { padding: 60px 24px; }
+  .impact-grid, .ai-grid, .proj-grid, .edu-grid { grid-template-columns: 1fr; }
+  .ch-title { font-size: 28px; }
+}
+</style>
 </head>
 <body>
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
 
-  <!-- Header -->
-  <header data-aos="fade-down">
-    <nav class="navbar">
-      <h2 class="logo">Suraj Chathiri</h2>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="particles"></canvas>
 
-  <!-- Hamburger icon -->
-  <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('show')">
-    <span></span>
-    <span></span>
-    <span></span>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SSC.</div>
+  <div class="nav-links">
+    <a href="#career">Journey</a>
+    <a href="#impact">Impact</a>
+    <a href="#ai">AI Projects</a>
+    <a href="#tech">Stack</a>
+    <a href="#projects">Work</a>
+    <a href="#connect">Connect</a>
+  </div>
+  <a href="mailto:suraj.chathiri@gmail.com" class="nav-cta">HIRE ME</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="border:none;">
+  <div class="hero-eyebrow">// OPEN TO NEW OPPORTUNITIES · TEMPE, AZ</div>
+  <h1 class="hero-name"><span>Suraj Sagar<br>Chathiri</span></h1>
+  <div class="hero-typewriter" id="typewriter">Data Analyst · AI/ML Professional</div>
+  <p class="hero-sub">Turning enterprise data into decisions — from $2.8B financial portfolios to LLM-powered analytics pipelines and Generative AI systems.</p>
+
+  <div class="hero-kpis">
+    <div class="kpi">
+      <div class="kpi-num">3<span class="kpi-unit">+</span></div>
+      <div class="kpi-label">YRS EXPERIENCE</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">$3.6<span class="kpi-unit">B</span></div>
+      <div class="kpi-label">PORTFOLIOS HANDLED</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">40<span class="kpi-unit">%</span></div>
+      <div class="kpi-label">REPORTING REDUCED</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">4</div>
+      <div class="kpi-label">AI PROJECTS BUILT</div>
+    </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero" data-aos="fade-up">
-    <div class="hero-text" data-aos="fade-right">
-      <h1>Hi, I’m <span class="highlight">Suraj Sagar Chathiri</span></h1>
-      <p>Data Analyst specializing in transforming raw data into actionable insights</p>
-      <a href="#contact" class="btn-primary">Get In Touch</a>
-    </div>
-    <div class="hero-image" data-aos="fade-left">
-      <img
-        src="3d.png"
-        alt="3D Data Analytics Illustration"
-        loading="lazy"
-      />
-    </div>
-  </section>
+  <div class="hero-btns">
+    <a href="#career" class="btn-primary">READ MY STORY</a>
+    <a href="https://linkedin.com/in/suraj-sagar-chathiri" class="btn-ghost" target="_blank">LINKEDIN PROFILE</a>
+    <a href="https://surajchathiri.github.io/myportfolio" class="btn-ghost" target="_blank">PORTFOLIO SITE</a>
+  </div>
 
-  <!-- About Section -->
-  <section id="about" class="about-section" data-aos="fade-up">
-    <h2>About Me</h2>
-    <p>
-      Data Analyst with 3 years of experience in Master Data Management, ETL development, and data modeling.
-      Skilled in SQL, Python, and building dashboards in Tableau and Power BI. Experienced in Agile and
-      Waterfall environments, applying ML techniques to solve business problems and drive decision-making.
-    </p>
-  </section>
-
-<section id="skills" class="skills-section" data-aos="fade-up">
-  <h2>Technical Skills</h2>
-  <div class="skills-container">
-    <div class="skill-group" data-aos="zoom-in">
-      <h3>Tools &amp; Programming Skills</h3>
-      <p>Python, SQL, Visual Studio Code, PyCharm</p>
-    </div>
-
-    <div class="skill-group" data-aos="zoom-in" data-aos-delay="100">
-      <h3>Software &amp; Visualization Tools</h3>
-      <p>Advance Excel (VBA, Lookups, Macro, Pivot Table, Index), Tableau, SPSS, Informatica, Power BI, Oracle SAP, Salesforce.</p>
-    </div>
-
-    <div class="skill-group" data-aos="zoom-in" data-aos-delay="200">
-      <h3>ML Algorithms</h3>
-      <p>Regression, Classification, Decision Trees, KNN, Naïve Bayes, K-means, Random Forest, Hypothesis Testing, A/B Testing, ANOVA.</p>
-    </div>
-
-    <div class="skill-group" data-aos="zoom-in" data-aos-delay="300">
-      <h3>Database &amp; Cloud</h3>
-      <p>MySQL, AWS (EC2, S3, Amazon Redshift), Azure (Data Lake, Data Factory)</p>
-    </div>
-
-    <div class="skill-group" data-aos="zoom-in" data-aos-delay="400">
-      <h3>Libraries</h3>
-      <p>Scikit‑learn, Matplotlib, Pandas, NumPy, Seaborn, Statsmodels</p>
-    </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-bar"></div>
   </div>
 </section>
 
-  <!-- Experience Section -->
-<section id="experience" class="experience-section" data-aos="fade-up">
-  <h2>Professional Experience</h2>
+<!-- CHAPTER 1: CAREER -->
+<section id="career">
+  <div class="ch-label reveal">// chapter 01</div>
+  <h2 class="ch-title reveal">The Career Story</h2>
+
   <div class="timeline">
 
-    <!-- Caterpillar Financials -->
-    <div class="timeline-item right" data-aos="fade-left">
-      <div class="timeline-bullet"><i class="fas fa-briefcase"></i></div>
-      <div class="timeline-content">
-        <span class="date">Jun 2024 – Present | Irving, TX</span>
-        <h3>Data Analyst</h3>
-        <ul>
-          <li>When I arrived at Caterpillar Financials in June 2024, the Teradata exports were a manual headache—so I crafted Python scripts that now deliver clean CSVs at the click of a button, freeing analysts to focus on insights instead of data wrangling.</li>
-          <li>With that friction removed, I turned to forecasting: leveraging Python and R, I built regression models that predicted equipment leasing patterns so accurately we slashed excess inventory by 18%.</li>
-          <li>To ensure every team had reliable data, I architected scalable ETL pipelines using Informatica, Talend, and Azure Databricks—transforming raw feeds into polished datasets ready for analysis.</li>
-          <li>Armed with trusted data, I designed interactive Tableau and Power BI dashboards, complete with custom filters and parameters, driving a 30% jump in stakeholder satisfaction and dramatically cutting report turnaround times.</li>
-          <li>Finally, I wove ML‑driven classification models and advanced R forecasting into our workflows, boosting overall efficiency by 35% and setting the stage for truly data‑driven decision making.</li>
-        </ul>
+    <div class="tl-item" style="transition-delay:0.1s">
+      <div class="tl-dot live"></div>
+      <div class="tl-period">JUNE 2024 – PRESENT · TEMPE, AZ</div>
+      <div class="tl-company">Caterpillar Financial Services</div>
+      <div class="tl-role">Data Analyst</div>
+      <div class="tl-badge">$2.8B Financial Portfolio</div>
+      <ul class="tl-points">
+        <li>Designed scalable analytics and decision-support workflows enabling <strong>faster executive decision-making</strong> across enterprise reporting</li>
+        <li>Built ETL and data ingestion pipelines using <strong>Airflow & AWS Glue</strong>, reducing manual processing and accelerating delivery timelines</li>
+        <li>Implemented <strong>LLM-powered executive reporting</strong> to automate insight generation, improving operational review efficiency by <strong>22%</strong></li>
+        <li>Developed predictive risk analytics using <strong>Scikit-learn & XGBoost</strong> for proactive financial risk assessment</li>
+        <li>Built <strong>Power BI & Looker</strong> dashboards delivering predictive KPIs and operational metrics for leadership</li>
+        <li>Contributed to <strong>Explainable AI</strong> and analytics governance initiatives for responsible, transparent reporting</li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">Python</span><span class="tl-tag">SQL</span><span class="tl-tag">Snowflake</span>
+        <span class="tl-tag">Airflow</span><span class="tl-tag">AWS Glue</span><span class="tl-tag">Power BI</span>
+        <span class="tl-tag">Looker</span><span class="tl-tag">XGBoost</span><span class="tl-tag">SageMaker</span><span class="tl-tag">Git</span>
       </div>
     </div>
 
-    <!-- Bajaj Finance -->
-    <div class="timeline-item left" data-aos="fade-right">
-      <div class="timeline-bullet"><i class="fas fa-briefcase"></i></div>
-      <div class="timeline-content">
-        <span class="date">Jan 2022 – Oct 2023 | India</span>
-        <h3>Data Analyst</h3>
-        <ul>
-          <li>When I joined Bajaj Finance in January 2022, stakeholders were drowning in static reports—so I crafted dynamic Power BI and Excel dashboards that delivered real‑time financial insights, boosting satisfaction by 30%.</li>
-          <li>As demand for faster data grew, I overhauled our ETL process with Informatica and Talend, automating lookups and mappings to eliminate manual bottlenecks and accelerate data availability.</li>
-          <li>To turn raw numbers into foresight, I used R to perform variance analysis and forecasting—reducing report generation time by 35% and giving teams the confidence to plan ahead.</li>
-          <li>Seeing the power of predictive analytics, I developed classification models that flagged high‑risk loan accounts before defaults occurred, enhancing our risk management framework.</li>
-          <li>Finally, I integrated machine‑learning outputs into our dashboards—enabling executives to interactively explore risk scores and trend projections, and cementing data‑driven decision making across the organization.</li>
-        </ul>
+    <div class="tl-item" style="transition-delay:0.2s">
+      <div class="tl-dot"></div>
+      <div class="tl-period">JAN 2022 – NOV 2023 · HYDERABAD, INDIA</div>
+      <div class="tl-company">Bajaj Finserv</div>
+      <div class="tl-role">Data Analyst</div>
+      <div class="tl-badge">$800M Lending Portfolio</div>
+      <ul class="tl-points">
+        <li>Built predictive ML models for <strong>loan risk assessment</strong>, improving analytical accuracy for data-driven lending decisions</li>
+        <li>Automated KPI reporting and workflows using <strong>Python, SQL & Tableau</strong> — reduced manual effort by <strong>40%</strong></li>
+        <li>Designed <strong>CLTV prediction models</strong> using ML algorithms for customer segmentation & business intelligence</li>
+        <li>Supported enterprise <strong>data governance</strong>, audit compliance, and regulatory reporting initiatives</li>
+        <li>Partnered with business and technical stakeholders to streamline analytics modernization</li>
+      </ul>
+      <div class="tl-tags">
+        <span class="tl-tag">Python</span><span class="tl-tag">MySQL</span><span class="tl-tag">Tableau</span>
+        <span class="tl-tag">Pandas</span><span class="tl-tag">Hadoop</span><span class="tl-tag">Excel VBA</span><span class="tl-tag">Scikit-learn</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<section id="projects" class="projects-section" data-aos="fade-up">
-  <h2>Academic Projects &amp; Achievements</h2>
-
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="ml">Machine Learning (Python)</button>
-    <button class="tab-btn" data-tab="viz">Visualizations (Power BI & Tableau)</button>
-    <button class="tab-btn" data-tab="ppt">Presentations</button>
-  </div>
-
-  <!-- Machine Learning Tab -->
-  <div class="tab-content active" id="ml">
-    <ul class="resource-list">
-      <li>
-        <span>Machine Learning Using Python</span>
-        <a href="Machine Learning using Python.zip"
-           download
-           class="download-btn">Download</a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Visualizations Tab -->
-  <div class="tab-content" id="viz">
-    <div class="viz-buttons">
-      <button onclick="toggleViz('tableauViz')">Tableau</button>
-      <button onclick="toggleViz('powerbiViz')">Power BI</button>
+<!-- CHAPTER 2: IMPACT -->
+<section id="impact">
+  <div class="ch-label reveal">// chapter 02</div>
+  <h2 class="ch-title reveal">Numbers That Tell the Story</h2>
+  <div class="impact-grid">
+    <div class="impact-card reveal" style="transition-delay:0.1s">
+      <span class="impact-num" data-target="22" data-suffix="%">0%</span>
+      <div class="impact-desc">improvement in<br>operational review efficiency</div>
     </div>
-
-    <!-- BOTH start hidden -->
-    <div id="tableauViz" class="viz-grid hidden">
-      <!-- Obesity Risk Analysis Dashboard -->
-      <div class="project-card">
-        <a href="https://github.com/surajchathiri/Obesity-Risk-Analysis"
-           target="_blank">
-          <img src="Obesity Risk.png"
-               alt="Obesity Risk Analysis Dashboard">
-        </a>
-        <h3>Obesity Risk Analysis Dashboard</h3>
-        <p>Interactive Tableau story exploring the key factors leading to obesity.</p>
-      </div>
-      <!-- European Bank Deposit Behaviour -->
-      <div class="project-card">
-        <a href="https://github.com/surajchathiri/European-Bank-Deposit-Behaviour"
-           target="_blank">
-          <img src="EuropeanBank.png"
-               alt="European Bank Deposit Behaviour Dashboard">
-        </a>
-        <h3>European Bank Deposit Behaviour Dashboard</h3>
-        <p>Drill-down story uncovering how nutritional and lifestyle factors drive obesity risk</p>
-      </div>
-      <!-- Two Hotels in Portugal (new) -->
-      <div class="project-card">
-        <a href="https://github.com/surajchathiri/Two-Hotels-In-Portugal" 
-           target="_blank">
-          <img src="Two Hotels.png" 
-               alt="Two Hotels in Portugal">
-        </a>
-        <h3>Two Hotels in Portugal</h3>
-        <p>Drill-down story analyzing cancellation patterns for resort vs city hotels</p>
-      </div>
+    <div class="impact-card reveal" style="transition-delay:0.15s">
+      <span class="impact-num" data-target="40" data-suffix="%">0%</span>
+      <div class="impact-desc">reduction in<br>manual reporting effort</div>
     </div>
-
-    <div id="powerbiViz" class="viz-grid hidden">
-      <div class="project-card">
-        <a href="https://github.com/surajchathiri/Chocolate_Sales"
-           target="_blank">
-          <img src="Chocolate Shipment.png"
-               alt="Chocolate Sales Dashboard">
-        </a>
-        <h3>Chocolate Sales Dashboard</h3>
-        <p>Power BI dashboard analyzing profit margins, top sellers, and global trends.</p>
-      </div>
+    <div class="impact-card reveal" style="transition-delay:0.2s">
+      <span class="impact-num" data-prefix="$" data-target="2.8" data-suffix="B">$0B</span>
+      <div class="impact-desc">financial portfolio managed<br>at Caterpillar Financial Services</div>
     </div>
-    <!-- BOTH end hidden -->
-  </div>
-
-  <!-- Presentations Tab -->
-  <div class="tab-content" id="ppt">
-    <ul class="resource-list">
-      <li>
-        <span>Capstone Presentation</span>
-        <a href="files/capstone-presentation.pptx"
-           download
-           class="download-btn">Download</a>
-      </li>
-      <li>
-        <span>Data Strategy Deck</span>
-        <a href="files/data-strategy-deck.pptx"
-           download
-           class="download-btn">Download</a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- Education & Certifications Section -->
-<section id="education" class="education-section" data-aos="fade-up">
-  <h2>Education &amp; Certifications</h2>
-
-  <!-- Row 1: Education -->
-  <div class="education-container">
-    <div class="education-item" data-aos="zoom-in">
-      <h3>Master in Business Analytics</h3>
-      <p>Northern Arizona University, Flagstaff, AZ (Jan ’24–May ’25)</p>
+    <div class="impact-card reveal" style="transition-delay:0.25s">
+      <span class="impact-num" data-prefix="$" data-target="800" data-suffix="M">$0M</span>
+      <div class="impact-desc">lending portfolio<br>at Bajaj Finserv</div>
     </div>
-    <div class="education-item" data-aos="zoom-in" data-aos-delay="100">
-      <h3>Bachelor in Electronics &amp; Communication Engineering</h3>
-      <p>JNTU Hyderabad, India (June ’19–May ’23)</p>
+    <div class="impact-card reveal" style="transition-delay:0.3s">
+      <span class="impact-num" data-target="3" data-suffix="+">0+</span>
+      <div class="impact-desc">years of enterprise<br>analytics & AI delivery</div>
     </div>
-  </div>
-
-  <!-- Row 2: Certifications -->
-  <div class="education-container">
-    <div class="education-item" data-aos="zoom-in" data-aos-delay="200">
-      <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/ZC3XX26R26Y3"
-         target="_blank" rel="noopener noreferrer">
-        <img src="GDA Badge.png" alt="Google Data Analytics Certificate Badge" />
-      </a>
-      <h3>Google Data Analytics Certificate</h3>
-    </div>
-    <div class="education-item" data-aos="zoom-in" data-aos-delay="300">
-      <a href="https://www.coursera.org/account/accomplishments/certificate/6PUO48P1PVTG"
-         target="_blank" rel="noopener noreferrer">
-        <img src="azure_transparent.png" alt="Azure Fundamentals Badge" />
-      </a>
-      <h3>Microsoft Certified: Azure Fundamentals</h3>
+    <div class="impact-card reveal" style="transition-delay:0.35s">
+      <span class="impact-num" data-target="4">0</span>
+      <div class="impact-desc">GenAI projects<br>built & deployed</div>
     </div>
   </div>
 </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
-    <h2>Get In Touch</h2>
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="info-item">
-          <i class="fas fa-envelope"></i>
-          <div>
-            <h4>Email</h4>
-            <p>suraj.chathiri@gmail.com</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-phone"></i>
-          <div>
-            <h4>Phone</h4>
-            <p>928-600-3369</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <div>
-            <h4>Location</h4>
-            <p>McKinney, TX</p>
-          </div>
-        </div>
-      </div>
-      <div class="contact-form">
-        <form id="contact-form">
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="text" name="subject" placeholder="Subject" required />
-          <textarea name="message" rows="6" placeholder="Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
+<!-- CHAPTER 3: AI PROJECTS -->
+<section id="ai">
+  <div class="ch-label reveal">// chapter 03</div>
+  <h2 class="ch-title reveal">AI & Generative AI Projects</h2>
+  <div class="ai-grid">
+    <div class="ai-card reveal" style="transition-delay:0.1s">
+      <span class="ai-glyph">🧠</span>
+      <div class="ai-title">Enterprise GenAI Reporting Assistant</div>
+      <div class="ai-stack">AZURE OPENAI · PROMPT ENGINEERING · PYTHON</div>
+      <p class="ai-desc">LLM-powered assistant that auto-generates executive-level business summaries from large financial datasets — replacing manual reporting cycles with intelligent, always-on automation.</p>
     </div>
-  </section>
-
-  <!-- AOS & EmailJS Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-  <script>
-    AOS.init({ duration: 600, once: true });
-    (function () {
-      emailjs.init("49ssht38saUsykvV8");
-    })();
-    document
-      .getElementById("contact-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        emailjs
-          .sendForm("service_1213", "template_ehh3ort", this)
-          .then(
-            function () {
-              alert("Message sent successfully!");
-            },
-            function (err) {
-              console.error(err);
-              alert("Failed to send; check console.");
-            }
-          );
-        this.reset();
-      });
-  </script>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <h3>Suraj Sagar Chathiri</h3>
-      <div class="social-icons">
-        <a
-          href="https://www.linkedin.com/in/suraj-sagar-chathiri"
-          target="_blank"
-          aria-label="LinkedIn"
-        ><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://x.com/ChathiriSuraj" target="_blank" aria-label="X"
-          ><img src="x.webp" alt="X logo" class="social-img" loading="lazy"
-        /></a>
-        <a
-          href="https://github.com/surajchathiri"
-          target="_blank"
-          aria-label="GitHub"
-        ><i class="fab fa-github"></i></a>
-      </div>
-      <p>© 2025 Suraj Sagar Chathiri. All rights reserved.</p>
+    <div class="ai-card reveal" style="transition-delay:0.15s">
+      <span class="ai-glyph">🔍</span>
+      <div class="ai-title">RAG Knowledge Assistant</div>
+      <div class="ai-stack">RAG · VECTOR SEARCH · LLM ORCHESTRATION</div>
+      <p class="ai-desc">Retrieval-Augmented Generation prototype integrating vector search and document retrieval for contextual Q&A — enabling natural language access to enterprise knowledge bases.</p>
     </div>
-  </footer>
+    <div class="ai-card reveal" style="transition-delay:0.2s">
+      <span class="ai-glyph">📄</span>
+      <div class="ai-title">AI Document Processing & OCR</div>
+      <div class="ai-stack">OCR · ML CLASSIFICATION · IDP</div>
+      <p class="ai-desc">Automated document processing workflows using OCR and ML classification models to improve document routing, classification, and enterprise reporting efficiency at scale.</p>
+    </div>
+    <div class="ai-card reveal" style="transition-delay:0.25s">
+      <span class="ai-glyph">📊</span>
+      <div class="ai-title">Predictive Decision Intelligence</div>
+      <div class="ai-stack">PYTHON · SCIKIT-LEARN · CLOUD ANALYTICS</div>
+      <p class="ai-desc">Recommendation and decision-support system integrating customer segmentation and predictive analytics models for intelligent financial decision-making.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Custom Cursor Script -->
-  <script>
-    const cursor = document.querySelector(".custom-cursor");
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.top = e.clientY + "px";
-      cursor.style.left = e.clientX + "px";
-    });
-    const interactives = document.querySelectorAll(
-      "a, button, .btn-primary, .project, .timeline-bullet"
-    );
-    interactives.forEach((el) => {
-      el.addEventListener("mouseenter", () => cursor.classList.add("grow"));
-      el.addEventListener("mouseleave", () =>
-        cursor.classList.remove("grow")
-      );
-    });
-  </script>
-  <script>
-    function toggleViz(id) {
-    const tableau = document.getElementById('tableauViz');
-    const powerbi = document.getElementById('powerbiViz');
-    tableau.classList.add('hidden');
-    powerbi.classList.add('hidden');
-    document.getElementById(id).classList.remove('hidden');
+<!-- CHAPTER 4: TECH CONSTELLATION -->
+<section id="tech" class="full">
+  <div class="inner">
+    <div class="ch-label reveal">// chapter 04</div>
+    <h2 class="ch-title reveal">Tech Constellation</h2>
+  </div>
+  <canvas id="techCanvas"></canvas>
+</section>
+
+<!-- CHAPTER 5: GITHUB PROJECTS -->
+<section id="projects">
+  <div class="ch-label reveal">// chapter 05</div>
+  <h2 class="ch-title reveal">GitHub Data Projects</h2>
+  <div class="proj-grid">
+    <a class="proj-card reveal" href="https://github.com/surajchathiri/Chocolate_Sales" target="_blank" style="transition-delay:0.1s">
+      <div class="proj-glyph">🍫</div>
+      <div class="proj-name">Chocolate Sales Dashboard</div>
+      <div class="proj-tools">Power BI · Excel</div>
+      <div class="proj-links">
+        <span class="proj-link">Repo</span>
+        <span class="proj-link">Live →</span>
+      </div>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/surajchathiri/Obesity-Risk-Analysis" target="_blank" style="transition-delay:0.15s">
+      <div class="proj-glyph">🏥</div>
+      <div class="proj-name">Obesity Risk Analysis</div>
+      <div class="proj-tools">Tableau · Excel · Statistical Modeling</div>
+      <div class="proj-links">
+        <span class="proj-link">Repo</span>
+        <span class="proj-link">Live →</span>
+      </div>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/surajchathiri/European-Bank-Deposit-Behaviour" target="_blank" style="transition-delay:0.2s">
+      <div class="proj-glyph">🏦</div>
+      <div class="proj-name">European Bank Deposit ML</div>
+      <div class="proj-tools">Python · Jupyter · Tableau · RapidMiner</div>
+      <div class="proj-links">
+        <span class="proj-link">Repo</span>
+        <span class="proj-link">Live →</span>
+      </div>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/surajchathiri/Two-Hotels-In-Portugal" target="_blank" style="transition-delay:0.25s">
+      <div class="proj-glyph">🏨</div>
+      <div class="proj-name">Two Hotels in Portugal</div>
+      <div class="proj-tools">Python · EDA · Data Analysis</div>
+      <div class="proj-links">
+        <span class="proj-link">Repo</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CHAPTER 6: EDU + CERTS -->
+<section id="education">
+  <div class="ch-label reveal">// chapter 06</div>
+  <h2 class="ch-title reveal">Education & Credentials</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal" style="transition-delay:0.1s">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-deg">MS in Business Analytics</div>
+      <div class="edu-school">Northern Arizona University · Flagstaff, AZ</div>
+    </div>
+    <div class="edu-card reveal" style="transition-delay:0.15s">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-deg">BE in Electronics & Communication</div>
+      <div class="edu-school">JNTU · Hyderabad, India</div>
+    </div>
+  </div>
+  <div class="cert-list">
+    <div class="cert-item reveal" style="transition-delay:0.2s">
+      <div class="cert-dot"></div>
+      <div class="cert-name">Google Data Analytics Professional Certificate</div>
+      <div class="cert-by">Google / Coursera</div>
+    </div>
+    <div class="cert-item reveal" style="transition-delay:0.25s">
+      <div class="cert-dot"></div>
+      <div class="cert-name">Microsoft Azure Cloud Services</div>
+      <div class="cert-by">Microsoft / Coursera</div>
+    </div>
+    <div class="cert-item reveal" style="transition-delay:0.3s">
+      <div class="cert-dot"></div>
+      <div class="cert-name">Generative AI Fundamentals</div>
+      <div class="cert-by">Coursera</div>
+    </div>
+    <div class="cert-item reveal" style="transition-delay:0.35s">
+      <div class="cert-dot"></div>
+      <div class="cert-name">Azure OpenAI & AI Solution Architecture</div>
+      <div class="cert-by">Microsoft</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="ch-label reveal">// chapter 07</div>
+  <h2 class="ch-title reveal" style="text-align:center">Let's Build Together</h2>
+  <div class="connect-grid reveal">
+    <a href="mailto:suraj.chathiri@gmail.com" class="c-link"><i class="ti ti-mail"></i> suraj.chathiri@gmail.com</a>
+    <a href="https://linkedin.com/in/suraj-sagar-chathiri" class="c-link" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+    <a href="https://github.com/surajchathiri" class="c-link" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+    <a href="https://surajchathiri.github.io/myportfolio" class="c-link" target="_blank"><i class="ti ti-world"></i> Portfolio</a>
+    <a href="https://medium.com/@surajsagarch" class="c-link" target="_blank"><i class="ti ti-brand-medium"></i> Medium</a>
+  </div>
+
+  <div class="footer-quote reveal">"Data is not just numbers — it's a story waiting to be told."</div>
+  <div class="footer-meta reveal">
+    📍 Tempe, AZ &nbsp;·&nbsp;
+    <strong>928-600-3369</strong> &nbsp;·&nbsp;
+    Open to <strong>Data Analyst, ML Engineer & AI/Analytics roles</strong>
+  </div>
+</section>
+
+<script>
+(function(){
+
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='18px'; cur.style.height='18px';
+    ring.style.width='52px'; ring.style.height='52px';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='10px'; cur.style.height='10px';
+    ring.style.width='36px'; ring.style.height='36px';
+  });
+});
+
+/* ── PARTICLES ── */
+const pc = document.getElementById('particles');
+const pcx = pc.getContext('2d');
+let PW,PH,pts;
+function initPts(){
+  PW=pc.width=window.innerWidth;
+  PH=pc.height=window.innerHeight;
+  pts=Array.from({length:70},()=>({
+    x:Math.random()*PW, y:Math.random()*PH,
+    vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25,
+    r:Math.random()*1.2+.4
+  }));
+}
+function drawPts(){
+  pcx.clearRect(0,0,PW,PH);
+  pts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>PW)p.vx*=-1;
+    if(p.y<0||p.y>PH)p.vy*=-1;
+    pcx.beginPath(); pcx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    pcx.fillStyle='rgba(91,143,255,0.35)'; pcx.fill();
+  });
+  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{
+    const d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(d<110){
+      pcx.beginPath(); pcx.moveTo(a.x,a.y); pcx.lineTo(b.x,b.y);
+      pcx.strokeStyle=`rgba(91,143,255,${.1*(1-d/110)})`;
+      pcx.lineWidth=.5; pcx.stroke();
     }
+  }));
+  requestAnimationFrame(drawPts);
+}
+initPts(); drawPts();
+window.addEventListener('resize',initPts);
 
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-    tabButtons.forEach(b => b.classList.remove('active'));
-    tabContents.forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-    });
-    });
-  </script>
+/* ── TYPEWRITER ── */
+const roles=[
+  'Data Analyst · AI/ML Professional',
+  'Python · SQL · Snowflake · Power BI',
+  'LLM Integration · RAG · ETL Pipelines',
+  'Generative AI · Predictive Analytics',
+  'Turning Data into Business Impact 🚀'
+];
+let ri=0,ci=0,del=false;
+const tw=document.getElementById('typewriter');
+function type(){
+  const cur=roles[ri];
+  if(!del){ tw.textContent=cur.slice(0,++ci); if(ci===cur.length){del=true;setTimeout(type,2400);return;} }
+  else { tw.textContent=cur.slice(0,--ci); if(ci===0){del=false;ri=(ri+1)%roles.length;} }
+  setTimeout(type,del?38:68);
+}
+type();
+
+/* ── SCROLL REVEAL ── */
+const revObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.tl-item').forEach(el=>revObs.observe(el));
+
+/* ── COUNT UP ── */
+const numObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    const target=parseFloat(el.dataset.target);
+    const prefix=el.dataset.prefix||'';
+    const suffix=el.dataset.suffix||'';
+    const isFloat=target%1!==0;
+    let start=null;
+    function step(ts){
+      if(!start)start=ts;
+      const prog=Math.min((ts-start)/1400,1);
+      const ease=1-Math.pow(1-prog,3);
+      const val=ease*target;
+      el.textContent=prefix+(isFloat?val.toFixed(1):Math.round(val))+suffix;
+      if(prog<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    numObs.unobserve(el);
+  });
+},{threshold:0.5});
+document.querySelectorAll('.impact-num[data-target]').forEach(el=>numObs.observe(el));
+
+/* ── TECH CONSTELLATION ── */
+const tc=document.getElementById('techCanvas');
+const tcx=tc.getContext('2d');
+const techs=[
+  {n:'Python',    c:'ml',   x:.50,y:.50},
+  {n:'SQL',       c:'ml',   x:.30,y:.36},
+  {n:'Scikit-learn',c:'ml', x:.70,y:.36},
+  {n:'XGBoost',   c:'ml',   x:.66,y:.64},
+  {n:'Pandas',    c:'ml',   x:.34,y:.64},
+  {n:'R',         c:'ml',   x:.50,y:.78},
+  {n:'RAG',       c:'ai',   x:.14,y:.55},
+  {n:'Azure OpenAI',c:'ai', x:.17,y:.26},
+  {n:'LLM Orchestration',c:'ai',x:.06,y:.42},
+  {n:'Prompt Eng.',c:'ai',  x:.10,y:.70},
+  {n:'Snowflake', c:'cloud',x:.84,y:.54},
+  {n:'Airflow',   c:'cloud',x:.86,y:.74},
+  {n:'AWS Glue',  c:'cloud',x:.93,y:.40},
+  {n:'Docker',    c:'cloud',x:.78,y:.82},
+  {n:'Spark',     c:'cloud',x:.94,y:.62},
+  {n:'Power BI',  c:'bi',   x:.40,y:.14},
+  {n:'Tableau',   c:'bi',   x:.60,y:.14},
+  {n:'Looker',    c:'bi',   x:.80,y:.18},
+  {n:'Excel',     c:'bi',   x:.22,y:.14},
+];
+const cc={ml:'#5b8fff',ai:'#9d7fea',cloud:'#2dd4a0',bi:'#f5a623'};
+let tcW,tcH,aT=0;
+function resizeTc(){
+  tcW=tc.clientWidth; tcH=tc.clientHeight;
+  tc.width=tcW; tc.height=tcH;
+}
+resizeTc();
+function drawTech(){
+  tcx.clearRect(0,0,tcW,tcH); aT+=.006;
+  const nodes=techs.map((t,i)=>({
+    ...t,
+    px:t.x*tcW+Math.sin(aT+i*.8)*8,
+    py:t.y*tcH+Math.cos(aT+i*.6)*6,
+    col:cc[t.c]
+  }));
+  nodes.forEach((a,i)=>nodes.slice(i+1).forEach(b=>{
+    if(a.c!==b.c)return;
+    const d=Math.hypot(a.px-b.px,a.py-b.py);
+    if(d<tcW*.22){
+      tcx.beginPath(); tcx.moveTo(a.px,a.py); tcx.lineTo(b.px,b.py);
+      tcx.strokeStyle=a.col+'33'; tcx.lineWidth=1; tcx.stroke();
+    }
+  }));
+  nodes.forEach(n=>{
+    const g=tcx.createRadialGradient(n.px,n.py,0,n.px,n.py,22);
+    g.addColorStop(0,n.col+'44'); g.addColorStop(1,'transparent');
+    tcx.beginPath(); tcx.arc(n.px,n.py,22,0,Math.PI*2);
+    tcx.fillStyle=g; tcx.fill();
+    tcx.beginPath(); tcx.arc(n.px,n.py,5,0,Math.PI*2);
+    tcx.fillStyle=n.col; tcx.fill();
+    tcx.strokeStyle='rgba(6,8,16,.9)'; tcx.lineWidth=2; tcx.stroke();
+    tcx.font='500 11px DM Sans, sans-serif';
+    tcx.textAlign='center'; tcx.fillStyle='rgba(221,227,255,.75)';
+    tcx.fillText(n.n,n.px,n.py-13);
+  });
+  const leg=[{c:'ml',l:'ML / Analytics'},{c:'ai',l:'AI / GenAI'},{c:'cloud',l:'Cloud / Infra'},{c:'bi',l:'BI / Viz'}];
+  leg.forEach((l,i)=>{
+    const lx=24+i*160,ly=tcH-18;
+    tcx.beginPath(); tcx.arc(lx,ly-4,5,0,Math.PI*2);
+    tcx.fillStyle=cc[l.c]; tcx.fill();
+    tcx.font='11px DM Sans, sans-serif'; tcx.textAlign='left';
+    tcx.fillStyle='rgba(221,227,255,.4)'; tcx.fillText(l.l,lx+10,ly);
+  });
+  requestAnimationFrame(drawTech);
+}
+const to=new IntersectionObserver(es=>{
+  if(es[0].isIntersecting){resizeTc();drawTech();to.disconnect();}
+},{threshold:.15});
+to.observe(tc);
+window.addEventListener('resize',resizeTc);
+
+/* ── NAV SHRINK ── */
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.padding=window.scrollY>60?'12px 48px':'18px 48px';
+});
+
+})();
+</script>
 </body>
 </html>
